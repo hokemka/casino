@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель казино</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div id="admin-app">
+        <header>
+            <div id="welcome-message" class="welcome-message">Добро пожаловать в панель администратора!</div>
+            <h1>Админ-панель казино</h1>
+        </header>
+
+        <main>
+            <section class="admin-section">
+                <h2>Общая статистика</h2>
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <h3>Пользователи</h3>
+                        <div class="stat-value" id="total-users">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Сумма ставок</h3>
+                        <div class="stat-value" id="total-bets">0 USDT</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Сумма выигрышей</h3>
+                        <div class="stat-value" id="total-wins">0 USDT</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Прибыль казино</h3>
+                        <div class="stat-value" id="casino-profit">0 USDT</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="admin-section">
+                <h2>Управление пользователями</h2>
+                <div class="search-container">
+                    <input type="text" id="user-search" placeholder="Поиск по ID или имени">
+                    <button id="search-btn">Поиск</button>
+                </div>
+                <div class="user-list" id="user-list">
+                    <!-- Список пользователей будет добавлен через JavaScript -->
+                </div>
+            </section>
+
+            <section class="admin-section">
+                <h2>Редактирование баланса</h2>
+                <div class="balance-edit-container">
+                    <div class="user-info">
+                        <p>Пользователь: <span id="edit-user-name">Не выбран</span></p>
+                        <p>ID: <span id="edit-user-id">-</span></p>
+                        <p>Текущий баланс: <span id="edit-user-balance">0 USDT</span></p>
+                    </div>
+                    <div class="balance-actions">
+                        <div class="action-group">
+                            <label for="balance-amount">Сумма</label>
+                            <input type="number" id="balance-amount" min="0" step="0.01" value="0">
+                        </div>
+                        <div class="action-group">
+                            <label>Операция</label>
+                            <div class="operation-buttons">
+                                <button id="add-balance" class="operation-btn">Добавить</button>
+                                <button id="subtract-balance" class="operation-btn">Вычесть</button>
+                                <button id="set-balance" class="operation-btn">Установить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="admin-section">
+                <h2>Статистика по играм</h2>
+                <div class="games-stats" id="games-stats">
+                    <!-- Статистика игр будет добавлена через JavaScript -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html> 

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Казино</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="welcome-message" id="welcome-message">Добро пожаловать!</div>
+            <div id="profile-info">
+                <div class="profile-photo">
+                    <img id="user-photo" src="img/default-avatar.svg" alt="Фото профиля">
+                </div>
+                <div class="profile-details">
+                    <h2 id="user-name">Игрок</h2>
+                    <div class="balance-container">
+                        <span id="user-balance">0.00</span>
+                        <span class="currency">USDT</span>
+                        <button id="deposit-btn" class="btn-deposit">+</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="game-nav">
+            <button class="game-tab active" data-game="mines">Mines</button>
+            <button class="game-tab" data-game="crash">Crash</button>
+        </div>
+
+        <div class="game-container">
+            <div id="mines-game" class="game active">
+                <div class="game-controls">
+                    <div class="control-group">
+                        <label for="mines-bet">Ставка</label>
+                        <div class="bet-input">
+                            <input type="number" id="mines-bet" min="1" step="1" value="1">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>Количество бомб</label>
+                        <div class="mines-selector">
+                            <div class="mines-option active" data-mines="3">3</div>
+                            <div class="mines-option" data-mines="5">5</div>
+                            <div class="mines-option" data-mines="10">10</div>
+                        </div>
+                    </div>
+                </div>
+                <button id="mines-play-btn" class="btn-play">Играть</button>
+                <div class="mines-grid"></div>
+            </div>
+
+            <div id="crash-game" class="game">
+                <div class="game-controls">
+                    <div class="control-group">
+                        <label for="crash-bet">Ставка</label>
+                        <div class="bet-input">
+                            <input type="number" id="crash-bet" min="1" step="1" value="1">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="crash-auto">Авто вывод (x)</label>
+                        <div class="bet-input">
+                            <input type="number" id="crash-auto" min="1.1" step="0.1" value="2.0">
+                        </div>
+                    </div>
+                </div>
+                <button id="crash-play-btn" class="btn-play">Играть</button>
+                <button id="crash-cashout-btn" class="btn-cashout" disabled>Вывести</button>
+                
+                <div class="crash-chart-container">
+                    <canvas id="crash-chart"></canvas>
+                    <div id="crash-multiplier">1.00×</div>
+                </div>
+                
+                <div class="crash-history">
+                    <h3>История</h3>
+                    <div class="history-values"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="deposit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Пополнение баланса</h2>
+            <form id="deposit-form">
+                <div class="form-group">
+                    <label for="deposit-amount">Сумма (USDT)</label>
+                    <input type="number" id="deposit-amount" min="1" step="1" value="10">
+                </div>
+                <button type="submit" class="btn-deposit-submit">Пополнить</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="mines-result" class="game-result">
+        <div class="result-content win">
+            <h3>Победа!</h3>
+            <p>Вы выиграли <span id="mines-win-amount">0.00</span> USDT</p>
+            <button class="btn-play-again">Играть снова</button>
+        </div>
+        <div class="result-content lose">
+            <h3>Неудача!</h3>
+            <p>Попробуйте ещё раз</p>
+            <button class="btn-play-again">Играть снова</button>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/mines.js"></script>
+    <script src="js/crash.js"></script>
+</body>
+</html> 
