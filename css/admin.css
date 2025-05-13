@@ -1,1 +1,438 @@
 
+:root {
+    --tg-theme-bg-color: #ffffff;
+    --tg-theme-text-color: #000000;
+    --tg-theme-hint-color: #999999;
+    --tg-theme-link-color: #000000;
+    --tg-theme-button-color: #000000;
+    --tg-theme-button-text-color: #ffffff;
+    --primary-color: #000000;
+    --secondary-color: #333333;
+    --danger-color: #666666;
+    --card-bg: #f9f9f9;
+    --border-color: #e0e0e0;
+    --animation-duration: 0.5s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    background-color: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+#admin-app {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    animation: fadeIn var(--animation-duration) ease-out;
+}
+
+/* Header */
+header {
+    margin-bottom: 30px;
+    text-align: center;
+    animation: slideIn var(--animation-duration) ease-out;
+}
+
+header h1 {
+    font-size: 28px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Sections */
+.admin-section {
+    margin-bottom: 35px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    background-color: var(--card-bg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    animation: scaleIn var(--animation-duration) ease-out;
+}
+
+.admin-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.admin-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.admin-section h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+/* Stats */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background-color: var(--tg-theme-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: var(--tg-theme-hint-color);
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* User Search */
+.search-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.search-container input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 25px 0 0 25px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.search-container input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+.search-container button {
+    background-color: var(--tg-theme-button-color);
+    color: var(--tg-theme-button-text-color);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-container button:hover {
+    background-color: var(--primary-color);
+    opacity: 0.9;
+}
+
+/* User List */
+.user-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.user-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.user-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.user-item.selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.user-item:last-child {
+    border-bottom: none;
+}
+
+.user-info-column {
+    flex: 1;
+}
+
+.user-name {
+    font-weight: bold;
+}
+
+.user-id {
+    font-size: 12px;
+    color: var(--tg-theme-hint-color);
+}
+
+.user-balance {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Balance Edit */
+.balance-edit-container {
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 20px;
+    background-color: var(--tg-theme-bg-color);
+}
+
+.user-info {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.balance-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.action-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+.action-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--tg-theme-hint-color);
+}
+
+.action-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.action-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+.operation-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.operation-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.operation-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.operation-btn:active {
+    transform: translateY(1px);
+}
+
+#add-balance {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+#subtract-balance {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+#set-balance {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Games Stats */
+.game-stat-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    background-color: var(--tg-theme-bg-color);
+    transition: all 0.3s ease;
+}
+
+.game-stat-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.game-stat-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.game-name {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.game-count {
+    color: var(--tg-theme-hint-color);
+}
+
+.game-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+}
+
+.game-detail-item {
+    font-size: 14px;
+    background-color: var(--card-bg);
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.game-detail-item:hover {
+    transform: scale(1.05);
+}
+
+.game-detail-item span {
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Ripple Effect */
+.operation-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: ripple-effect 0.6s linear;
+    pointer-events: none;
+    width: 100px;
+    height: 100px;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes ripple-effect {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(4);
+        opacity: 0;
+    }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --tg-theme-bg-color: #121212;
+        --tg-theme-text-color: #ffffff;
+        --tg-theme-hint-color: #aaaaaa;
+        --tg-theme-button-color: #ffffff;
+        --tg-theme-button-text-color: #000000;
+        --primary-color: #ffffff;
+        --secondary-color: #cccccc;
+        --danger-color: #aaaaaa;
+        --card-bg: #1e1e1e;
+        --border-color: #333333;
+    }
+}
+
+/* Apply Telegram Theme */
+body.tg-theme-dark {
+    --tg-theme-bg-color: #121212;
+    --tg-theme-text-color: #ffffff;
+    --tg-theme-hint-color: #aaaaaa;
+    --tg-theme-button-color: #ffffff;
+    --tg-theme-button-text-color: #000000;
+    --primary-color: #ffffff;
+    --secondary-color: #cccccc;
+    --danger-color: #aaaaaa;
+    --card-bg: #1e1e1e;
+    --border-color: #333333;
+}
+
+/* Приветственное сообщение */
+.welcome-message {
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    color: var(--tg-theme-text-color);
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 25px;
+    background-color: var(--card-bg);
+    display: inline-block;
+    margin: 0 auto 20px;
+    animation: fadeIn 0.8s ease-out;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.welcome-message:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+} 
